@@ -48,14 +48,14 @@ Kết quả:
 
 - Thư mục `student-profile/` và các thư mục con `2/`, `3/`.
 
-![S3 student-profile folder](/images/s3,1.jpg)
+![S3 student-profile folder](/images/s3-1.jpg)
 
 - Thư mục `weekly-report-templates/` và thư mục con `1/`.
 
-![S3 weekly-report-templates folder](/images/s3,2.jpg)
+![S3 weekly-report-templates folder](/images/s3-2.jpg)
 
 - Cấu trúc thư mục tổng thể.
 
-![S3 cấu trúc thư mục](/images/s3,3.jpg)
+![S3 cấu trúc thư mục](/images/s3-3.jpg)
 
-![S3 uploads hình ảnh file ... lên aws s3](/images/3,4s3.jpg)
+![S3 uploads hình ảnh file ... lên aws s3](/images/3-4s3.jpg)

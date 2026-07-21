@@ -52,13 +52,13 @@ Results:
 
 - `student-profile/` folder and the `2/`, `3/` subfolders.
 
-![S3 student-profile folder](/images/s3,1.jpg)
+![S3 student-profile folder](/images/s3-1.jpg)
 
 - `weekly-report-templates/` folder and the `1/` subfolder.
 
-![S3 weekly-report-templates folder](/images/s3,2.jpg)
+![S3 weekly-report-templates folder](/images/s3-2.jpg)
 
 - Full bucket folder structure.
 
-![S3 folder structure](/images/s3,3.jpg)
-![S3 uploads hình ảnh file ... lên aws s3](/images/3,4s3.jpg)
+![S3 folder structure](/images/s3-3.jpg)
+![S3 uploads hình ảnh file ... lên aws s3](/images/3-4s3.jpg)
