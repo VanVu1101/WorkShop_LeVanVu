@@ -7,9 +7,6 @@ chapter: false
 
 # Internship Report
 
-{{% notice info %}}
-This report summarizes my internship activities, technical learning outcomes, workshops, and project development during the **First Cloud AI Journey Workforce Bootcamp**.
-{{% /notice %}}
 
 ## Student Information
 

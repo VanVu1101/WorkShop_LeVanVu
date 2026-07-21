@@ -69,5 +69,4 @@ This event was valuable because it covered several important areas of modern sof
 
 #### Some memorable moments
 
-{{< figure src="/images/30-5.jpg" title="Figure 1. A memorable moment from the technical sharing session" width="80%" >}}
 

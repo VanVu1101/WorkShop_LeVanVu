@@ -61,4 +61,4 @@ Results:
 - Full bucket folder structure.
 
 ![S3 folder structure](/images/s3,3.jpg)
-)
+![S3 uploads hình ảnh file ... lên aws s3](/images/3,4s3.jpg)

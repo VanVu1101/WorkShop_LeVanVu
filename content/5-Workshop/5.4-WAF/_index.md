@@ -35,5 +35,5 @@ The WAF protection pack named `Nhom4-WebACL-Protection` was created successfully
 3. Configure AI monetization and smart recommendations if available.
 4. Validate protection pack attachment on the target CloudFront distribution.
 
-![WAF protection pack overview](/images/waf1.png)
-![WAF protection pack overview](/images/waf2.png)
+![WAF protection pack overview](/images/waf1.jpg)
+![WAF protection pack overview](/images/waf2.jpg)

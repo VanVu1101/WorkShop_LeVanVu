@@ -6,9 +6,6 @@ chapter: false
 pre: " <b> 1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
 **On this page**, I summarize the 12-week internship worklog for the Internship Management System project. Over the course of the internship, I completed activities ranging from learning AWS fundamentals, setting up the development environment, building the application, integrating frontend and backend, testing, deploying on the cloud, to preparing final documentation and project presentation.
 
