@@ -6,35 +6,31 @@ chapter: false
 pre: " <b> 1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
-**Trong trang này** bạn sẽ cần giới thiệu worklog của bạn **như thế nào**? Bạn hoàn thành chương trình trong vòng **bao nhiêu tuần**? Bạn **đã làm gì** trong các tuần đó?
+**Trong trang này**, tôi tóm tắt lại quá trình thực tập 12 tuần của dự án Hệ thống Quản lý Thực tập. Trong suốt thời gian thực tập, tôi đã thực hiện các công việc từ làm quen với AWS, thiết lập môi trường phát triển, xây dựng hệ thống, tích hợp frontend và backend, kiểm thử, triển khai lên cloud cho đến hoàn thiện tài liệu và báo cáo cuối khóa.
 
+Các nội dung chính theo từng tuần như sau:
 
-Thông thường và cũng là tiêu chuẩn, một worklog được thực hiện trong khoảng 3 tháng (trong suốt thời gian thực tập) với nội dung các tuần như sau:
+**Tuần 1:** [Làm quen với AWS và các dịch vụ cơ bản](1.1-week1/)
 
-**Tuần 1:** [Làm quen với AWS và các dịch vụ cơ bản trong AWS](1.1-week1/)
+**Tuần 2:** [Thiết lập dự án, chuẩn bị môi trường và lên kế hoạch hệ thống](1.2-week2/)
 
-**Tuần 2:** [Làm công việc A...](1.2-week2/)
+**Tuần 3:** [Phân tích yêu cầu, thiết kế cơ sở dữ liệu và cấu trúc backend](1.3-week3/)
 
-**Tuần 3:** [Làm công việc B...](1.3-week3/)
+**Tuần 4:** [Xây dựng xác thực, quản lý người dùng và phát triển API cốt lõi](1.4-week4/)
 
-**Tuần 4:** [Làm công việc C...](1.4-week4/)
+**Tuần 5:** [Phát triển giao diện frontend và triển khai các component UI](1.5-week5/)
 
-**Tuần 5:** [Làm công việc D...](1.5-week5/)
+**Tuần 6:** [Xây dựng các module quản lý thực tập, báo cáo và quy trình làm việc](1.6-week6/)
 
-**Tuần 6:** [Làm công việc E...](1.6-week6/)
+**Tuần 7:** [Phát triển module quản lý nhiệm vụ, thông báo và tài liệu](1.7-week7/)
 
-**Tuần 7:** [Làm công việc G...](1.7-week7/)
+**Tuần 8:** [Hoàn thiện dashboard, hồ sơ người dùng và các chức năng quản lý dữ liệu](1.8-week8/)
 
-**Tuần 8:** [Làm công việc H...](1.8-week8/)
+**Tuần 9:** [Tích hợp frontend với backend và kiểm tra luồng dữ liệu](1.9-week9/)
 
-**Tuần 9:** [Làm công việc I...](1.9-week9/)
+**Tuần 10:** [Kiểm thử, tối ưu hiệu năng và chuẩn bị triển khai](1.10-week10/)
 
-**Tuần 10:** [Làm công việc L...](1.10-week10/)
+**Tuần 11:** [Hoàn thiện các module còn lại, triển khai AWS và kiểm thử hệ thống](1.11-week11/)
 
-**Tuần 11:** [Làm công việc M...](1.11-week11/)
-
-**Tuần 12:** [Làm công việc N...](1.12-week12/)
+**Tuần 12:** [Hoàn thiện các tính năng nâng cao, kiểm thử cuối cùng, viết tài liệu và bàn giao dự án](1.12-week12/)

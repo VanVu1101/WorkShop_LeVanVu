@@ -1,126 +1,203 @@
----
+﻿---
 title: "Blog 1"
-date: 2024-01-01
+date: 2026-06-23
 weight: 1
 chapter: false
 pre: " <b> 3.1. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-# Getting Started with Healthcare Data Lakes: Using Microservices
+# Automating CI/CD for GitHub Monorepos with AWS CodePipeline
 
-Data lakes can help hospitals and healthcare facilities turn data into business insights, maintain business continuity, and protect patient privacy. A **data lake** is a centralized, managed, and secure repository to store all your data, both in its raw and processed forms for analysis. Data lakes allow you to break down data silos and combine different types of analytics to gain insights and make better business decisions.
+In modern microservice architectures, a GitHub monorepo is a natural way to keep multiple services in one shared repository. But monorepos create a CI/CD problem: a single commit can touch many folders, and without filtering, every CodePipeline may run even when only one service changed.
 
-This blog post is part of a larger series on getting started with setting up a healthcare data lake. In my final post of the series, *“Getting Started with Healthcare Data Lakes: Diving into Amazon Cognito”*, I focused on the specifics of using Amazon Cognito and Attribute Based Access Control (ABAC) to authenticate and authorize users in the healthcare data lake solution. In this blog, I detail how the solution evolved at a foundational level, including the design decisions I made and the additional features used. You can access the code samples for the solution in this Git repo for reference.
+This post is based on the AWS blog on integrating GitHub Monorepo with AWS CodePipeline to run project-specific pipelines. I also draw on the example architecture that introduces a webhook, API Gateway, Lambda decision engine, and targeted pipeline execution.
 
 ---
 
-## Architecture Guidance
+## Why Monorepo CI/CD is Different
 
-The main change since the last presentation of the overall architecture is the decomposition of a single service into a set of smaller services to improve maintainability and flexibility. Integrating a large volume of diverse healthcare data often requires specialized connectors for each format; by keeping them encapsulated separately as microservices, we can add, remove, and modify each connector without affecting the others. The microservices are loosely coupled via publish/subscribe messaging centered in what I call the “pub/sub hub.”
+A monorepo contains several projects in one repository, for example:
 
-This solution represents what I would consider another reasonable sprint iteration from my last post. The scope is still limited to the ingestion and basic parsing of **HL7v2 messages** formatted in **Encoding Rules 7 (ER7)** through a REST interface.
+```text
+repo/
+├── frontend/
+├── backend/
+├── auth-service/
+├── internship-service/
+└── docs/
+```
 
-**The solution architecture is now as follows:**
+The naive CI/CD approach is to attach each pipeline to the same repository webhook. Then any commit in the repo triggers all pipelines, even if only one project changed.
 
-> *Figure 1. Overall architecture; colored boxes represent distinct services.*
+That leads to three main issues:
 
----
-
-While the term *microservices* has some inherent ambiguity, certain traits are common:  
-- Small, autonomous, loosely coupled  
-- Reusable, communicating through well-defined interfaces  
-- Specialized to do one thing well  
-- Often implemented in an **event-driven architecture**
-
-When determining where to draw boundaries between microservices, consider:  
-- **Intrinsic**: technology used, performance, reliability, scalability  
-- **Extrinsic**: dependent functionality, rate of change, reusability  
-- **Human**: team ownership, managing *cognitive load*
+- Wasted build time when unrelated pipelines run.
+- Higher AWS cost from unnecessary CodeBuild and CodePipeline executions.
+- Slower feedback for developers on the actual changed service.
 
 ---
 
-## Technology Choices and Communication Scope
+## The Better Architecture: Path-Based Decision Engine
 
-| Communication scope                       | Technologies / patterns to consider                                                        |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Within a single microservice              | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Between microservices in a single service | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Between services                          | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+The key idea is to separate event ingestion from pipeline execution. Instead of CodePipeline listening to the repository directly, GitHub pushes events to a lightweight filter layer. That layer decides which pipeline should run.
 
----
+The architecture looks like this:
 
-## The Pub/Sub Hub
-
-Using a **hub-and-spoke** architecture (or message broker) works well with a small number of tightly related microservices.  
-- Each microservice depends only on the *hub*  
-- Inter-microservice connections are limited to the contents of the published message  
-- Reduces the number of synchronous calls since pub/sub is a one-way asynchronous *push*
-
-Drawback: **coordination and monitoring** are needed to avoid microservices processing the wrong message.
+1. GitHub Monorepo sends a webhook event on push.
+2. Amazon API Gateway receives the webhook.
+3. AWS Lambda validates the GitHub signature and parses the payload.
+4. The Lambda decision engine checks which folders changed.
+5. The Lambda starts only the corresponding CodePipeline(s).
 
 ---
 
-## Core Microservice
+## Example Flow
 
-Provides foundational data and communication layer, including:  
-- **Amazon S3** bucket for data  
-- **Amazon DynamoDB** for data catalog  
-- **AWS Lambda** to write messages into the data lake and catalog  
-- **Amazon SNS** topic as the *hub*  
-- **Amazon S3** bucket for artifacts such as Lambda code
+If a commit changes `frontend/src/App.jsx`, the decision engine can route it like this:
 
-> Only allow indirect write access to the data lake through a Lambda function → ensures consistency.
+- `frontend/` changed → start `FrontendPipeline`
+- `backend/` not changed → do not start `BackendPipeline`
+- `internship-service/` not changed → do not start `InternshipServicePipeline`
+- `docs/` not changed → no pipeline for docs
 
----
-
-## Front Door Microservice
-
-- Provides an API Gateway for external REST interaction  
-- Authentication & authorization based on **OIDC** via **Amazon Cognito**  
-- Self-managed *deduplication* mechanism using DynamoDB instead of SNS FIFO because:  
-  1. SNS deduplication TTL is only 5 minutes  
-  2. SNS FIFO requires SQS FIFO  
-  3. Ability to proactively notify the sender that the message is a duplicate  
+If the commit only changes documentation under `docs/`, the system can skip all pipelines entirely.
 
 ---
 
-## Staging ER7 Microservice
+## Why this Works
 
-- Lambda “trigger” subscribed to the pub/sub hub, filtering messages by attribute  
-- Step Functions Express Workflow to convert ER7 → JSON  
-- Two Lambdas:  
-  1. Fix ER7 formatting (newline, carriage return)  
-  2. Parsing logic  
-- Result or error is pushed back into the pub/sub hub  
+This model turns CI/CD into an event-driven system instead of a reactive “build everything” system.
+
+Old behavior:
+
+- Repository changes → run all pipelines
+
+New behavior:
+
+- Repository changes → analyze changed paths → run only relevant pipelines
+
+That means:
+
+- faster CI cycles for developers
+- less cost from builds and artifacts
+- clearer pipeline ownership by project
 
 ---
 
-## New Features in the Solution
+## AWS Services Used
 
-### 1. AWS CloudFormation Cross-Stack References
-Example *outputs* in the core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+### Webhook Receiver
+
+- **GitHub Webhook**: delivers push events with changed files.
+- **Amazon API Gateway**: provides a secure HTTP endpoint for the webhook.
+- **AWS Lambda**: validates the webhook signature and executes the decision logic.
+
+### Decision Engine
+
+- **AWS Lambda**: extracts changed file paths and matches them to folder rules.
+- **AWS CodePipeline**: starts the relevant pipeline using `StartPipelineExecution`.
+- **AWS IAM**: ensures the Lambda has permission only to start pipelines, not modify them.
+
+### Optional enhancements
+
+- **Amazon EventBridge**: publish filtered events for observability or audit.
+- **Amazon SNS**: notify teams when a pipeline is skipped or started.
+- **AWS Secrets Manager**: store the GitHub webhook secret.
+
+---
+
+## Sample Lambda Decision Logic
+
+The Lambda function can be small and deterministic. Here is a simplified JavaScript example:
+
+```js
+const { CodePipelineClient, StartPipelineExecutionCommand } = require('@aws-sdk/client-codepipeline');
+
+const pipelineMap = [
+  { prefix: 'frontend/', pipeline: 'FrontendPipeline' },
+  { prefix: 'backend/', pipeline: 'BackendPipeline' },
+  { prefix: 'auth-service/', pipeline: 'AuthServicePipeline' },
+  { prefix: 'internship-service/', pipeline: 'InternshipServicePipeline' },
+];
+
+exports.handler = async (event) => {
+  const payload = JSON.parse(event.body);
+  const changedFiles = payload.commits.flatMap(c => [...c.added, ...c.modified, ...c.removed]);
+
+  const pipelines = new Set();
+  for (const file of changedFiles) {
+    for (const rule of pipelineMap) {
+      if (file.startsWith(rule.prefix)) {
+        pipelines.add(rule.pipeline);
+      }
+    }
+  }
+
+  if (pipelines.size === 0) {
+    return { statusCode: 200, body: 'No relevant pipeline triggered.' };
+  }
+
+  const client = new CodePipelineClient({});
+  for (const name of pipelines) {
+    await client.send(new StartPipelineExecutionCommand({ name }));
+  }
+
+  return { statusCode: 200, body: `Started pipelines: ${[...pipelines].join(', ')}` };
+};
+```
+
+This simple function is the “decision engine” in the architecture. It avoids needless pipeline executions by only starting pipelines for changed folders.
+
+---
+
+## Implementation Considerations
+
+### Validate the webhook
+
+Always verify the GitHub webhook signature in Lambda before trusting the payload. This prevents unauthorized requests from starting pipelines.
+
+### Keep the mapping flexible
+
+Use a configuration file or environment variable to map repo paths to pipeline names, so you can change the monorepo structure without redeploying code.
+
+### Handle multiple pipelines
+
+Some commits may affect multiple services. The Lambda can start more than one pipeline in a single request.
+
+### Skip docs-only changes
+
+For changes under `docs/`, you can explicitly return early and skip all pipeline executions. This saves costs for non-code updates.
+
+---
+
+## Cost and Efficiency Benefits
+
+This approach is especially useful for monorepos and microservice landscapes because it:
+
+- reduces AWS CodeBuild minutes by running only what changed
+- lowers CodePipeline execution costs
+- improves developer turnaround time for relevant services
+- avoids noisy alerts from unrelated pipelines
+
+For large repositories with many services, the savings can be substantial.
+
+---
+
+## Conclusion
+
+Automating CI/CD for a GitHub monorepo with AWS CodePipeline does not require a complex orchestrator. A lightweight Lambda decision engine between GitHub and CodePipeline is enough to make the system smart and efficient.
+
+With this architecture, monorepo CI/CD becomes:
+
+- more targeted
+- more cost-effective
+- easier to maintain
+- better aligned with microservice ownership
+
+If you are building multiple projects in one repository, this pattern is a great fit.
+
+---
+
+## References
+
+- AWS Blog: Integrate GitHub Monorepo with AWS CodePipeline to run project-specific CI/CD pipelines

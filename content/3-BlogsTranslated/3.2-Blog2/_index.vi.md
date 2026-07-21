@@ -1,127 +1,125 @@
----
+﻿---
 title: "Blog 2"
-date: 2024-01-01
+date: 2026-07-08
 weight: 1
 chapter: false
 pre: " <b> 3.2. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# Triển khai Modern Data Platform trong vài phút với Modern Data Architecture Accelerator (MDAA)
 
-# Bắt đầu với healthcare data lakes: Sử dụng microservices
+Chào mọi người cộng đồng AWS Study Group VN.
 
-Các data lake có thể giúp các bệnh viện và cơ sở y tế chuyển dữ liệu thành những thông tin chi tiết về doanh nghiệp và duy trì hoạt động kinh doanh liên tục, đồng thời bảo vệ quyền riêng tư của bệnh nhân. **Data lake** là một kho lưu trữ tập trung, được quản lý và bảo mật để lưu trữ tất cả dữ liệu của bạn, cả ở dạng ban đầu và đã xử lý để phân tích. data lake cho phép bạn chia nhỏ các kho chứa dữ liệu và kết hợp các loại phân tích khác nhau để có được thông tin chi tiết và đưa ra các quyết định kinh doanh tốt hơn.
+Trong quá trình tìm hiểu về AWS Big Data, mình đã đọc một bài viết rất thú vị về Modern Data Architecture Accelerator (MDAA) — một framework mã nguồn mở do AWS phát triển. MDAA giúp doanh nghiệp triển khai Modern Data Platform nhanh hơn, đơn giản hơn và vẫn tuân thủ các AWS Best Practices về bảo mật, quản trị dữ liệu và khả năng mở rộng.
 
-Bài đăng trên blog này là một phần của loạt bài lớn hơn về việc bắt đầu cài đặt data lake dành cho lĩnh vực y tế. Trong bài đăng blog cuối cùng của tôi trong loạt bài, *“Bắt đầu với data lake dành cho lĩnh vực y tế: Đào sâu vào Amazon Cognito”*, tôi tập trung vào các chi tiết cụ thể của việc sử dụng Amazon Cognito và Attribute Based Access Control (ABAC) để xác thực và ủy quyền người dùng trong giải pháp data lake y tế. Trong blog này, tôi trình bày chi tiết cách giải pháp đã phát triển ở cấp độ cơ bản, bao gồm các quyết định thiết kế mà tôi đã đưa ra và các tính năng bổ sung được sử dụng. Bạn có thể truy cập các code samples cho giải pháp tại Git repo này để tham khảo.
+Nếu bạn đang tìm hiểu về Data Lake, Data Platform hay AI Platform trên AWS thì đây là giải pháp rất đáng tham khảo.
 
 ---
 
-## Hướng dẫn kiến trúc
+## Vì sao AWS phát triển MDAA?
 
-Thay đổi chính kể từ lần trình bày cuối cùng của kiến trúc tổng thể là việc tách dịch vụ đơn lẻ thành một tập hợp các dịch vụ nhỏ để cải thiện khả năng bảo trì và tính linh hoạt. Việc tích hợp một lượng lớn dữ liệu y tế khác nhau thường yêu cầu các trình kết nối chuyên biệt cho từng định dạng; bằng cách giữ chúng được đóng gói riêng biệt với microservices, chúng ta có thể thêm, xóa và sửa đổi từng trình kết nối mà không ảnh hưởng đến những kết nối khác. Các microservices được kết nối rời thông qua tin nhắn publish/subscribe tập trung trong cái mà tôi gọi là “pub/sub hub”.
+Ngày nay, một Modern Data Platform không chỉ đơn giản là tạo một S3 Bucket để lưu dữ liệu. Một hệ thống hoàn chỉnh thường cần kết hợp nhiều dịch vụ AWS như:
 
-Giải pháp này đại diện cho những gì tôi sẽ coi là một lần lặp nước rút hợp lý khác từ last post của tôi. Phạm vi vẫn được giới hạn trong việc nhập và phân tích cú pháp đơn giản của các **HL7v2 messages** được định dạng theo **Quy tắc mã hóa 7 (ER7)** thông qua giao diện REST.
+- Amazon S3 để lưu trữ dữ liệu
+- AWS Glue để xử lý ETL và quản lý metadata
+- AWS Lake Formation để quản trị quyền truy cập
+- AWS IAM để phân quyền
+- AWS KMS để mã hóa dữ liệu
+- AWS CloudTrail để ghi lại hoạt động
+- AWS CloudWatch để giám sát hệ thống
 
-**Kiến trúc giải pháp bây giờ như sau:**
-
-> *Hình 1. Kiến trúc tổng thể; những ô màu thể hiện những dịch vụ riêng biệt.*
-
----
-
-Mặc dù thuật ngữ *microservices* có một số sự mơ hồ cố hữu, một số đặc điểm là chung:  
-- Chúng nhỏ, tự chủ, kết hợp rời rạc  
-- Có thể tái sử dụng, giao tiếp thông qua giao diện được xác định rõ  
-- Chuyên biệt để giải quyết một việc  
-- Thường được triển khai trong **event-driven architecture**
-
-Khi xác định vị trí tạo ranh giới giữa các microservices, cần cân nhắc:  
-- **Nội tại**: công nghệ được sử dụng, hiệu suất, độ tin cậy, khả năng mở rộng  
-- **Bên ngoài**: chức năng phụ thuộc, tần suất thay đổi, khả năng tái sử dụng  
-- **Con người**: quyền sở hữu nhóm, quản lý *cognitive load*
+Với nhiều dịch vụ như vậy, xây dựng hạ tầng trở nên phức tạp. Đội ngũ triển khai phải đảm bảo mọi tài nguyên đều được cấu hình đúng chuẩn về Security, Governance và Compliance. AWS cho rằng quá trình này thường mất nhiều thời gian và dễ xảy ra sai sót khi làm thủ công.
 
 ---
 
-## Lựa chọn công nghệ và phạm vi giao tiếp
+## MDAA hoạt động như thế nào?
 
-| Phạm vi giao tiếp                        | Các công nghệ / mô hình cần xem xét                                                        |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Trong một microservice                   | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Giữa các microservices trong một dịch vụ | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Giữa các dịch vụ                         | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+Điểm nổi bật của MDAA là thay đổi cách xây dựng hạ tầng. Thay vì phải viết hàng nghìn dòng IaC cho từng tài nguyên AWS, người dùng chỉ cần khai báo mong muốn bằng một file YAML. MDAA sẽ tự động chuyển các khai báo này thành kiến trúc AWS hoàn chỉnh sử dụng AWS CDK và CloudFormation.
+
+Theo AWS, trong một ví dụ triển khai Data Lake có quản trị dữ liệu, lượng mã hạ tầng có thể giảm từ khoảng 1.800 dòng CloudFormation xuống chỉ khoảng 45 dòng YAML. Điều này giúp đơn giản hóa đáng kể quá trình triển khai.
 
 ---
 
-## The pub/sub hub
+## Kiến trúc Module của MDAA
 
-Việc sử dụng kiến trúc **hub-and-spoke** (hay message broker) hoạt động tốt với một số lượng nhỏ các microservices liên quan chặt chẽ.  
-- Mỗi microservice chỉ phụ thuộc vào *hub*  
-- Kết nối giữa các microservice chỉ giới hạn ở nội dung của message được xuất  
-- Giảm số lượng synchronous calls vì pub/sub là *push* không đồng bộ một chiều
+MDAA không phải một sản phẩm cố định, mà được xây dựng theo kiến trúc module. AWS cung cấp hơn 40 module khác nhau, mỗi module đảm nhiệm một chức năng riêng như:
 
-Nhược điểm: cần **phối hợp và giám sát** để tránh microservice xử lý nhầm message.
+- lưu trữ dữ liệu
+- ETL
+- quản trị dữ liệu
+- Machine Learning
+- Generative AI
 
----
+Các module có thể kết hợp như những khối LEGO. Khi doanh nghiệp cần mở rộng hệ thống, chỉ cần thêm module mà không phải thiết kế lại toàn bộ kiến trúc.
 
-## Core microservice
-
-Cung cấp dữ liệu nền tảng và lớp truyền thông, gồm:  
-- **Amazon S3** bucket cho dữ liệu  
-- **Amazon DynamoDB** cho danh mục dữ liệu  
-- **AWS Lambda** để ghi message vào data lake và danh mục  
-- **Amazon SNS** topic làm *hub*  
-- **Amazon S3** bucket cho artifacts như mã Lambda
-
-> Chỉ cho phép truy cập ghi gián tiếp vào data lake qua hàm Lambda → đảm bảo nhất quán.
+Để các module giao tiếp với nhau, MDAA dùng AWS Systems Manager Parameter Store để chia sẻ thông tin cấu hình giữa các thành phần. Nhờ vậy, bạn không phải khai báo thủ công ARN hoặc ID của từng tài nguyên.
 
 ---
 
-## Front door microservice
+## Governance được tích hợp ngay từ đầu
 
-- Cung cấp API Gateway để tương tác REST bên ngoài  
-- Xác thực & ủy quyền dựa trên **OIDC** thông qua **Amazon Cognito**  
-- Cơ chế *deduplication* tự quản lý bằng DynamoDB thay vì SNS FIFO vì:
-  1. SNS deduplication TTL chỉ 5 phút
-  2. SNS FIFO yêu cầu SQS FIFO
-  3. Chủ động báo cho sender biết message là bản sao
+Một trong những điểm mạnh của MDAA là tích hợp Governance ngay khi triển khai. Ở nhiều dự án thực tế, Data Governance chỉ được bổ sung sau khi hệ thống đã hoàn thành. MDAA thì làm khác.
 
----
+Ngay trong quá trình triển khai, MDAA đã tích hợp sẵn các dịch vụ quản trị dữ liệu như:
 
-## Staging ER7 microservice
+- AWS Lake Formation
+- AWS Glue Data Catalog
+- AWS KMS
+- AWS CloudTrail
 
-- Lambda “trigger” đăng ký với pub/sub hub, lọc message theo attribute  
-- Step Functions Express Workflow để chuyển ER7 → JSON  
-- Hai Lambda:
-  1. Sửa format ER7 (newline, carriage return)
-  2. Parsing logic  
-- Kết quả hoặc lỗi được đẩy lại vào pub/sub hub
+và nhiều cơ chế bảo mật khác. Nhờ vậy, nền tảng dữ liệu được xây dựng ngay từ đầu với khả năng quản trị, thay vì phải sửa lại kiến trúc sau này.
 
 ---
 
-## Tính năng mới trong giải pháp
+## Bốn mô hình triển khai tham chiếu
 
-### 1. AWS CloudFormation cross-stack references
-Ví dụ *outputs* trong core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+AWS đã chuẩn bị sẵn bốn kiến trúc tham chiếu để phù hợp với nhiều nhu cầu khác nhau:
+
+1. **Basic Data Lake**: phù hợp khi doanh nghiệp muốn tập trung dữ liệu từ nhiều nguồn về một nơi lưu trữ thống nhất.
+2. **Data Science Platform**: mở rộng để phục vụ phân tích và xây dựng mô hình Machine Learning.
+3. **SageMaker Unified Studio**: dành cho môi trường nhiều nhóm Data Engineer, Data Analyst và Data Scientist cùng làm việc.
+4. **Generative AI Platform**: hỗ trợ Amazon Bedrock và kiến trúc Retrieval-Augmented Generation (RAG) để xây dựng ứng dụng AI trên dữ liệu nội bộ.
+
+Với MDAA, khi mở rộng thêm tính năng hoặc mô hình mới, bạn không cần thiết kế lại toàn bộ nền tảng dữ liệu.
+
+---
+
+## Ví dụ thực tế
+
+Bài viết có nhắc đến một trường hợp thực tế tại một hệ thống đại học với 17 cơ sở, quản lý khoảng 7,2 TB dữ liệu và hơn 8.000 dashboard.
+
+Sau khi áp dụng MDAA:
+
+- thời gian triển khai các tính năng mới và dashboard được rút ngắn khoảng 95%
+- việc quản trị dữ liệu được chuẩn hóa trên toàn hệ thống
+- giảm phụ thuộc vào giải pháp bên thứ ba
+
+Đây là minh chứng cho thấy MDAA phù hợp với tổ chức có quy mô dữ liệu lớn, không chỉ những ứng dụng nhỏ.
+
+---
+
+## MDAA có phù hợp với mọi dự án?
+
+Theo bài blog, MDAA hướng tới các tổ chức xây dựng Modern Data Platform, Data Lake hoặc hệ thống phân tích dữ liệu quy mô lớn. Điểm mạnh của framework này không phải là tạo ra nhiều dịch vụ AWS hơn, mà là chuẩn hóa kiến trúc theo AWS Best Practices.
+
+MDAA giúp:
+
+- giảm thời gian triển khai
+- chuẩn hóa security và governance
+- cho phép đội ngũ kỹ thuật tập trung vào dữ liệu thay vì xây dựng hạ tầng
+
+Nếu dự án của bạn chỉ là một hệ thống nhỏ, MDAA có thể là quá mức. Nhưng với tổ chức lớn, dữ liệu phức tạp và yêu cầu quản trị cao, MDAA là một lựa chọn rất đáng cân nhắc.
+
+---
+
+## Kết luận
+
+MDAA là một hướng tiếp cận thú vị của AWS trong xây dựng nền tảng dữ liệu hiện đại. Thay vì để kỹ sư cấu hình từng dịch vụ riêng lẻ, MDAA giúp tự động hóa gần như toàn bộ quá trình triển khai và tích hợp sẵn cơ chế quản trị dữ liệu, bảo mật và khả năng mở rộng.
+
+Nếu bạn đang nghiên cứu Data Lake, Data Platform hoặc kiến trúc dữ liệu trên AWS, bài viết này rất xứng đáng để đọc và tham khảo cách AWS chuẩn hóa triển khai hệ thống dữ liệu quy mô lớn.
+
+---
+
+## Tham khảo
+
+- AWS Blog: Deploy Modern Data Platforms in Minutes with MDAA
