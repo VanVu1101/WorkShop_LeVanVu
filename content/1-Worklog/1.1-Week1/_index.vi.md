@@ -30,12 +30,13 @@ Các mục tiêu cụ thể gồm:
 
 | Ngày | Nhiệm vụ | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
 |------|----------|--------------|-----------------|-------------------|
-| 1 | - Tham gia buổi giới thiệu chương trình **First Cloud AI Journey** tại HUTECH.<br>- Làm quen với Mentor Nguyễn Gia Hưng và các thành viên trong Bootcamp. | 20/04/2026 | 20/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 2 | - Đọc nội quy, quy định và quy trình báo cáo thực tập.<br>- Tìm hiểu khái niệm Cloud Computing và xu hướng phát triển của điện toán đám mây. | 21/04/2026 | 21/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | - Nghiên cứu tổng quan về nền tảng Amazon Web Services (AWS).<br>- Đọc tài liệu học tập từ hệ thống AWS Study Group. | 22/04/2026 | 22/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | - Tìm hiểu các nhóm dịch vụ chính của AWS:<br>&emsp;+ Compute (Điện toán)<br>&emsp;+ Storage (Lưu trữ)<br>&emsp;+ Networking (Mạng)<br>&emsp;+ Database (Cơ sở dữ liệu)<br>&emsp;+ Security & Management | 23/04/2026 | 23/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | - Nghiên cứu chi tiết các dịch vụ cốt lõi Amazon EC2 và Amazon S3.<br>- Tổng hợp kiến thức nền để chuẩn bị cho các bài thực hành AWS. | 24/04/2026 | 24/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 6 | - Ôn tập toàn bộ kiến thức đã học trong tuần.<br>- Chuẩn bị tài liệu và môi trường học tập cho các Workshop và Lab ở tuần tiếp theo. | 25/04/2026 | 25/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 1 | - Tham gia buổi giới thiệu chương trình **First Cloud AI Journey** tại HUTECH.<br>- Làm quen với Mentor Nguyễn Gia Hưng và các thành viên trong Bootcamp. | 17/04/2026 | 17/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | - Đọc nội quy, quy định và quy trình báo cáo thực tập.<br>- Tìm hiểu khái niệm Cloud Computing và xu hướng phát triển của điện toán đám mây. | 18/04/2026 | 18/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | - Nghiên cứu tổng quan về nền tảng Amazon Web Services (AWS).<br>- Đọc tài liệu học tập từ hệ thống AWS Study Group. | 19/04/2026 | 19/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | - Tìm hiểu các nhóm dịch vụ chính của AWS:<br>&emsp;+ Compute (Điện toán)<br>&emsp;+ Storage (Lưu trữ)<br>&emsp;&emsp;+ Networking (Mạng)<br>&emsp;&emsp;+ Database (Cơ sở dữ liệu)<br>&emsp;&emsp;+ Security & Management | 20/04/2026 | 20/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | - Nghiên cứu chi tiết các dịch vụ cốt lõi Amazon EC2 và Amazon S3.<br>- Tổng hợp kiến thức nền để chuẩn bị cho các bài thực hành AWS. | 21/04/2026 | 21/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
+
+---
 
 ---
 

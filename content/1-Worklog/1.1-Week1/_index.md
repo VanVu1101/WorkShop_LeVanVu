@@ -27,12 +27,11 @@ The objectives for the first week were:
 
 | Day | Tasks | Start Date | Completion Date | Reference Material |
 |------|-------|------------|-----------------|-------------------|
-| 1 | - Participate in the **First Cloud AI Journey Bootcamp** orientation at HUTECH.<br>- Meet mentor **Nguyen Gia Hung** and Bootcamp members. | 20/04/2026 | 20/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 2 | - Read internship regulations and weekly reporting guidelines.<br>- Learn Cloud Computing concepts and cloud technology trends. | 21/04/2026 | 21/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | - Study the overview of Amazon Web Services (AWS).<br>- Review learning materials from the AWS Study Group portal. | 22/04/2026 | 22/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | - Learn AWS core service categories:<br>&emsp;+ Compute<br>&emsp;+ Storage<br>&emsp;+ Networking<br>&emsp;+ Database<br>&emsp;+ Security & Management | 23/04/2026 | 23/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | - Study Amazon EC2 and Amazon S3.<br>- Summarize AWS fundamental concepts for future laboratories. | 24/04/2026 | 24/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 6 | - Review Bootcamp materials.<br>- Organize personal notes and prepare the AWS environment for Week 2. | 25/04/2026 | 25/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 1 | - Participate in the **First Cloud AI Journey Bootcamp** orientation at HUTECH.<br>- Meet mentor **Nguyen Gia Hung** and Bootcamp members. | 17/04/2026 | 17/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | - Read internship regulations and weekly reporting guidelines.<br>- Learn Cloud Computing concepts and cloud technology trends. | 18/04/2026 | 18/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | - Study the overview of Amazon Web Services (AWS).<br>- Review learning materials from the AWS Study Group portal. | 19/04/2026 | 19/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | - Learn AWS core service categories:<br>&emsp;+ Compute<br>&emsp;+ Storage<br>&emsp;+ Networking<br>&emsp;+ Database<br>&emsp;+ Security & Management | 20/04/2026 | 20/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | - Study Amazon EC2 and Amazon S3.<br>- Summarize AWS fundamental concepts for future laboratories. | 21/04/2026 | 21/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
 ---
 
@@ -47,6 +46,7 @@ I also became familiar with the communication channels, collaboration methods, a
 <p align="center">
 <img src="/images/aws.jpg" width="700">
 </p>
+
 
 <p align="center">
 <i>Figure 1. First Cloud AI Journey Bootcamp Orientation.</i>

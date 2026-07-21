@@ -1,14 +1,10 @@
 ---
 title: "Worklog Tuần 4"
-date: 2026-05-11
+date: 2026-05-08
 weight: 4
 chapter: false
 pre: "<b>1.4.</b>"
 ---
-
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
 ### Mục tiêu tuần 4
 
@@ -27,11 +23,12 @@ pre: "<b>1.4.</b>"
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - Chuẩn bị môi trường mạng.<br>- Tạo Linux VPC và Windows VPC.<br>- Cấu hình Security Group cho các EC2 Instance. | 11/05/2026 | 11/05/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 3 | - Khởi tạo Microsoft Windows Server 2025 EC2.<br>- Kết nối Remote Desktop (RDP).<br>- Kiểm tra cấu hình máy chủ Windows. | 12/05/2026 | 12/05/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 4 | - Khởi tạo Amazon Linux 2023.<br>- Kết nối SSH.<br>- Thực hành quản lý EC2, Snapshot và Custom AMI. | 13/05/2026 | 13/05/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 5 | - Cài đặt Apache, MariaDB, PHP, phpMyAdmin.<br>- Cài đặt Node.js.<br>- Triển khai AWS User Management Application trên Amazon Linux. | 14/05/2026 | 14/05/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 6 | - Cài đặt XAMPP và Node.js trên Windows Server.<br>- Triển khai ứng dụng Node.js.<br>- Kiểm tra khả năng truy cập ứng dụng.<br>- Tìm hiểu IAM Cost & Usage Governance.<br>- Dọn dẹp tài nguyên AWS. | 15/05/2026 | 16/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 2 | - Chuẩn bị môi trường mạng.<br>- Tạo Linux VPC và Windows VPC.<br>- Cấu hình Security Group cho các EC2 Instance. | 08/05/2026 | 08/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 3 | - Khởi tạo Microsoft Windows Server 2025 EC2.<br>- Kết nối Remote Desktop (RDP).<br>- Kiểm tra cấu hình máy chủ Windows. | 09/05/2026 | 09/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 4 | - Khởi tạo Amazon Linux 2023.<br>- Kết nối SSH.<br>- Thực hành quản lý EC2, Snapshot và Custom AMI. | 10/05/2026 | 10/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 5 | - Cài đặt Apache, MariaDB, PHP, phpMyAdmin.<br>- Cài đặt Node.js.<br>- Triển khai AWS User Management Application trên Amazon Linux. | 11/05/2026 | 11/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 6 | - Cài đặt XAMPP và Node.js trên Windows Server.<br>- Triển khai ứng dụng Node.js.<br>- Kiểm tra khả năng truy cập ứng dụng.<br>- Tìm hiểu IAM Cost & Usage Governance.<br>- Dọn dẹp tài nguyên AWS. | 12/05/2026 | 12/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 7 | - Hoàn tất tổng hợp và review lại toàn bộ nội dung tuần.<br>- Chuẩn bị tài liệu cho tuần tiếp theo. | 13/05/2026 | 13/05/2026 | https://cloudjourney.awsstudygroup.com/ |
 
 ---
 

@@ -43,7 +43,7 @@ This report summarizes my internship activities, technical learning outcomes, wo
 
 ## Profile
 
-![Le Van Vu](/images/vu.jpg)
+![Le Van Vu](/images/vu1.png)
 
 *Figure 1. Student profile photo.*
 

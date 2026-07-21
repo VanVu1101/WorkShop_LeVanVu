@@ -1,14 +1,11 @@
 ---
 title: "Week 4 Worklog"
-date: 2026-05-11
+date: 2026-05-08
 weight: 4
 chapter: false
 pre: "<b>1.4.</b>"
 ---
 
-{{% notice info %}}
-This worklog summarizes the hands-on laboratories and practical activities completed during the fourth week of the First Cloud AI Journey Bootcamp.
-{{% /notice %}}
 
 # Week 4 Objectives
 
@@ -29,12 +26,12 @@ The objectives for Week 4 were:
 
 | Day | Tasks | Start Date | Completion Date | Reference Material |
 |------|-------|------------|-----------------|--------------------|
-| 1 | - Prepare networking environment.<br>- Create Linux VPC and Windows VPC.<br>- Configure Security Groups for Linux and Windows instances. | 11/05/2026 | 11/05/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 2 | - Launch Microsoft Windows Server 2025 EC2 instance.<br>- Connect using Remote Desktop (RDP).<br>- Verify Windows instance configuration. | 12/05/2026 | 12/05/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 3 | - Launch Amazon Linux 2023 EC2 instance.<br>- Connect using SSH.<br>- Explore Amazon EC2 management features including Instance Types, EBS Snapshots and Custom AMIs. | 13/05/2026 | 13/05/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 4 | - Install Apache, MariaDB, PHP and phpMyAdmin.<br>- Install Node.js on Amazon Linux.<br>- Deploy the AWS User Management Application. | 14/05/2026 | 14/05/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 5 | - Install XAMPP and Node.js on Windows Server.<br>- Deploy Node.js application on Windows EC2.<br>- Test application accessibility. | 15/05/2026 | 15/05/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 6 | - Study IAM Cost & Usage Governance.<br>- Configure IAM policies for cost governance.<br>- Restrict EC2 deployment and AWS Regions.<br>- Clean up all AWS resources after completing the laboratories. | 16/05/2026 | 16/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 1 | - Prepare networking environment.<br>- Create Linux VPC and Windows VPC.<br>- Configure Security Groups for Linux and Windows instances. | 08/05/2026 | 08/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 2 | - Launch Microsoft Windows Server 2025 EC2 instance.<br>- Connect using Remote Desktop (RDP).<br>- Verify Windows instance configuration. | 09/05/2026 | 09/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 3 | - Launch Amazon Linux 2023 EC2 instance.<br>- Connect using SSH.<br>- Explore Amazon EC2 management features including Instance Types, EBS Snapshots and Custom AMIs. | 10/05/2026 | 10/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 4 | - Install Apache, MariaDB, PHP and phpMyAdmin.<br>- Install Node.js on Amazon Linux.<br>- Deploy the AWS User Management Application. | 11/05/2026 | 11/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 5 | - Install XAMPP and Node.js on Windows Server.<br>- Deploy Node.js application on Windows EC2.<br>- Test application accessibility. | 12/05/2026 | 12/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 6 | - Study IAM Cost & Usage Governance.<br>- Configure IAM policies for cost governance.<br>- Restrict EC2 deployment and AWS Regions.<br>- Clean up all AWS resources after completing the laboratories. | 13/05/2026 | 13/05/2026 | https://cloudjourney.awsstudygroup.com/ |
 
 ---
 

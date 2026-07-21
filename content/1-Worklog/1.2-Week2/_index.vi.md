@@ -30,12 +30,12 @@ Các mục tiêu chính gồm:
 
 | Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
 |------|-----------|--------------|-----------------|--------------------|
-| 1 | - Kích hoạt tài khoản AWS Academy để thực hành.<br>- Thiết lập môi trường Learner Lab và nhận AWS Credits.<br>- Làm quen với AWS Management Console và hướng dẫn Workshop. | 27/04/2026 | 27/04/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 2 | - Thực hành Workshop Amazon EC2.<br>- Làm quen Amazon Bedrock và mô hình Claude 3 Haiku.<br>- Viết Prompt và đánh giá kết quả phản hồi của AI. | 28/04/2026 | 28/04/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 3 | - Thực hành AWS Lambda và Amazon RDS.<br>- Tạo Lambda Function và Function URL.<br>- Triển khai Aurora PostgreSQL.<br>- Dọn dẹp tài nguyên sau khi hoàn thành Workshop. | 29/04/2026 | 29/04/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 4 | - Tìm hiểu AWS Cost Management.<br>- Thực hành AWS Budgets, AWS Cost Explorer, Billing Alerts và AWS Pricing Calculator.<br>- So sánh kiến trúc truyền thống và Serverless. | 30/04/2026 | 30/04/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 5 | - Thiết lập AWS Budgets và Billing Alerts.<br>- Theo dõi AWS Credits và chi phí sử dụng.<br>- Tìm hiểu AWS Support và cách tạo Support Case.<br>- Nghiên cứu các nguyên tắc tối ưu chi phí. | 01/05/2026 | 01/05/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 6 | - Ôn tập toàn bộ nội dung Workshop trong tuần.<br>- Tổng hợp kiến thức về EC2, Bedrock, Lambda, RDS và Cost Management.<br>- Chuẩn bị môi trường cho các bài Lab của tuần tiếp theo. | 02/05/2026 | 02/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 1 | - Kích hoạt tài khoản AWS Academy để thực hành.<br>- Thiết lập môi trường Learner Lab và nhận AWS Credits.<br>- Làm quen với AWS Management Console và hướng dẫn Workshop. | 24/04/2026 | 24/04/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 2 | - Thực hành Workshop Amazon EC2.<br>- Làm quen Amazon Bedrock và mô hình Claude 3 Haiku.<br>- Viết Prompt và đánh giá kết quả phản hồi của AI. | 25/04/2026 | 25/04/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 3 | - Thực hành AWS Lambda và Amazon RDS.<br>- Tạo Lambda Function và Function URL.<br>- Triển khai Aurora PostgreSQL.<br>- Dọn dẹp tài nguyên sau khi hoàn thành Workshop. | 26/04/2026 | 26/04/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 4 | - Tìm hiểu AWS Cost Management.<br>- Thực hành AWS Budgets, AWS Cost Explorer, Billing Alerts và AWS Pricing Calculator.<br>- So sánh kiến trúc truyền thống và Serverless. | 27/04/2026 | 27/04/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 5 | - Thiết lập AWS Budgets và Billing Alerts.<br>- Theo dõi AWS Credits và chi phí sử dụng.<br>- Tìm hiểu AWS Support và cách tạo Support Case.<br>- Nghiên cứu các nguyên tắc tối ưu chi phí. | 28/04/2026 | 28/04/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 6 | - Ôn tập toàn bộ nội dung Workshop trong tuần.<br>- Tổng hợp kiến thức về EC2, Bedrock, Lambda, RDS và Cost Management.<br>- Chuẩn bị môi trường cho các bài Lab của tuần tiếp theo. | 29/04/2026 | 29/04/2026 | https://cloudjourney.awsstudygroup.com/ |
 
 ---
 

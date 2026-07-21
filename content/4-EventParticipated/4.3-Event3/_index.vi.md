@@ -69,5 +69,3 @@ Sự kiện này đáng giá vì nó bao quát nhiều lĩnh vực quan trọng 
 - Sự nghiệp thành công đòi hỏi cả kỹ năng chuyên môn lẫn kỹ năng mềm như giao tiếp, giải quyết vấn đề và làm việc nhóm.
 
 #### Một số khoảnh khắc đáng nhớ
-
-{{< figure src="/images/30-5.jpg" title="Hình 1. Khoảnh khắc đáng nhớ trong buổi chia sẻ kỹ thuật" width="80%" >}}

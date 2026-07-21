@@ -29,12 +29,12 @@ The objectives for Week 3 were:
 
 | Day | Tasks | Start Date | Completion Date | Reference Material |
 |------|-------|------------|-----------------|--------------------|
-| 1 | - Study Amazon EC2 fundamentals.<br>- Learn Instance Types, AMI, Key Pair and Amazon EBS.<br>- Understand EC2 deployment workflow. | 04/05/2026 | 04/05/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 2 | - Study AWS Identity and Access Management (IAM).<br>- Create IAM Users, Groups and Policies.<br>- Configure IAM Roles and apply security best practices. | 05/05/2026 | 05/05/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 3 | - Learn Amazon VPC fundamentals.<br>- Configure VPC, Subnets, Route Tables and Internet Gateway.<br>- Explore Security Groups and Network ACLs. | 06/05/2026 | 06/05/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 4 | - Launch an Amazon EC2 Instance.<br>- Configure Security Groups.<br>- Create Key Pair and connect using SSH.<br>- Verify EC2 instance status. | 07/05/2026 | 07/05/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 5 | - Practice VPC networking.<br>- Configure Public and Private Subnets.<br>- Review EC2 networking architecture and resource security. | 08/05/2026 | 08/05/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 6 | - Review EC2, IAM and VPC laboratories.<br>- Summarize networking and security concepts.<br>- Prepare the AWS environment for Week 4. | 09/05/2026 | 09/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 1 | - Study Amazon EC2 fundamentals.<br>- Learn Instance Types, AMI, Key Pair and Amazon EBS.<br>- Understand EC2 deployment workflow. | 01/05/2026 | 01/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 2 | - Study AWS Identity and Access Management (IAM).<br>- Create IAM Users, Groups and Policies.<br>- Configure IAM Roles and apply security best practices. | 02/05/2026 | 02/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 3 | - Learn Amazon VPC fundamentals.<br>- Configure VPC, Subnets, Route Tables and Internet Gateway.<br>- Explore Security Groups and Network ACLs. | 03/05/2026 | 03/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 4 | - Launch an Amazon EC2 Instance.<br>- Configure Security Groups.<br>- Create Key Pair and connect using SSH.<br>- Verify EC2 instance status. | 04/05/2026 | 04/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 5 | - Practice VPC networking.<br>- Configure Public and Private Subnets.<br>- Review EC2 networking architecture and resource security. | 05/05/2026 | 05/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 6 | - Review EC2, IAM and VPC laboratories.<br>- Summarize networking and security concepts.<br>- Prepare the AWS environment for Week 4. | 06/05/2026 | 06/05/2026 | https://cloudjourney.awsstudygroup.com/ |
 
 ---
 

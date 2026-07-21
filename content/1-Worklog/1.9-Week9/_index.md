@@ -6,9 +6,6 @@ chapter: false
 pre: "<b>1.9.</b>"
 ---
 
-{{% notice info %}}
-This worklog summarizes the analysis, UI/UX design, and frontend development activities carried out during the ninth week of the internship project. The primary objective was to finalize the overall system architecture, assign development responsibilities among team members, and begin implementing the user interface according to the agreed software design.
-{{% /notice %}}
 
 # Week 9 Objectives
 

@@ -28,12 +28,12 @@ The objectives for Week 2 were:
 
 | Day | Tasks | Start Date | Completion Date | Reference Material |
 |-----|-------|------------|-----------------|--------------------|
-| 1 | - Create and activate an AWS Academy account for laboratory practice.<br>- Configure the lab environment and receive AWS Academy Credits.<br>- Review the AWS Management Console and laboratory instructions. | 27/04/2026 | 27/04/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 2 | - Complete Amazon EC2 hands-on laboratory.<br>- Explore Amazon Bedrock and test Claude 3 Haiku.<br>- Practice creating prompts and reviewing AI-generated responses. | 28/04/2026 | 28/04/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 3 | - Practice AWS Lambda and Amazon RDS.<br>- Create Lambda Functions and Function URLs.<br>- Deploy and test an Aurora PostgreSQL database.<br>- Clean up cloud resources after laboratory exercises. | 29/04/2026 | 29/04/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 4 | - Study AWS Cost Management services.<br>- Explore AWS Budgets, Cost Explorer, Billing Alerts and Pricing Calculator.<br>- Compare traditional cloud architecture with serverless architecture. | 30/04/2026 | 30/04/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 5 | - Configure AWS Budgets and Billing Alerts.<br>- Monitor AWS Academy Credits and cloud spending.<br>- Learn AWS Support plans and create Support Cases.<br>- Review cost optimization best practices. | 01/05/2026 | 01/05/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 6 | - Review all workshop materials completed during Week 2.<br>- Summarize key concepts from EC2, Bedrock, Lambda, RDS and Cost Management.<br>- Prepare the AWS environment for Week 3 laboratories. | 02/05/2026 | 02/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 1 | - Create and activate an AWS Academy account for laboratory practice.<br>- Configure the lab environment and receive AWS Academy Credits.<br>- Review the AWS Management Console and laboratory instructions. | 24/04/2026 | 24/04/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 2 | - Complete Amazon EC2 hands-on laboratory.<br>- Explore Amazon Bedrock and test Claude 3 Haiku.<br>- Practice creating prompts and reviewing AI-generated responses. | 25/04/2026 | 25/04/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 3 | - Practice AWS Lambda and Amazon RDS.<br>- Create Lambda Functions and Function URLs.<br>- Deploy and test an Aurora PostgreSQL database.<br>- Clean up cloud resources after laboratory exercises. | 26/04/2026 | 26/04/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 4 | - Study AWS Cost Management services.<br>- Explore AWS Budgets, Cost Explorer, Billing Alerts and Pricing Calculator.<br>- Compare traditional cloud architecture with serverless architecture. | 27/04/2026 | 27/04/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 5 | - Configure AWS Budgets and Billing Alerts.<br>- Monitor AWS Academy Credits and cloud spending.<br>- Learn AWS Support plans and create Support Cases.<br>- Review cost optimization best practices. | 28/04/2026 | 28/04/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 6 | - Review all workshop materials completed during Week 2.<br>- Summarize key concepts from EC2, Bedrock, Lambda, RDS and Cost Management.<br>- Prepare the AWS environment for Week 3 laboratories. | 29/04/2026 | 29/04/2026 | https://cloudjourney.awsstudygroup.com/ |
 
 ---
 

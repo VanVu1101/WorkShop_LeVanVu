@@ -31,12 +31,12 @@ Các mục tiêu chính gồm:
 
 | Ngày | Công việc | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo |
 |------|-----------|--------------|-----------------|--------------------|
-| 1 | - Tìm hiểu Amazon EC2.<br>- Nghiên cứu Instance Types, AMI, Key Pair và Amazon EBS.<br>- Hiểu quy trình triển khai EC2. | 04/05/2026 | 04/05/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 2 | - Tìm hiểu AWS Identity and Access Management (IAM).<br>- Tạo IAM User, IAM Group và IAM Policy.<br>- Thực hành IAM Role và các nguyên tắc bảo mật. | 05/05/2026 | 05/05/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 3 | - Tìm hiểu Amazon VPC.<br>- Thực hành VPC, Subnet, Route Table và Internet Gateway.<br>- Làm quen Security Group và Network ACL. | 06/05/2026 | 06/05/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 4 | - Khởi tạo Amazon EC2 Instance.<br>- Cấu hình Security Group.<br>- Tạo Key Pair và kết nối SSH.<br>- Kiểm tra trạng thái EC2 Instance. | 07/05/2026 | 07/05/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 5 | - Thực hành cấu hình mạng với Amazon VPC.<br>- Thiết lập Public Subnet và Private Subnet.<br>- Ôn tập kiến trúc mạng và bảo mật EC2. | 08/05/2026 | 08/05/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 6 | - Tổng hợp nội dung EC2, IAM và VPC.<br>- Ôn tập kiến thức về mạng và bảo mật.<br>- Chuẩn bị môi trường cho các Workshop tuần tiếp theo. | 09/05/2026 | 09/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 1 | - Tìm hiểu Amazon EC2.<br>- Nghiên cứu Instance Types, AMI, Key Pair và Amazon EBS.<br>- Hiểu quy trình triển khai EC2. | 01/05/2026 | 01/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 2 | - Tìm hiểu AWS Identity and Access Management (IAM).<br>- Tạo IAM User, IAM Group và IAM Policy.<br>- Thực hành IAM Role và các nguyên tắc bảo mật. | 02/05/2026 | 02/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 3 | - Tìm hiểu Amazon VPC.<br>- Thực hành VPC, Subnet, Route Table và Internet Gateway.<br>- Làm quen Security Group và Network ACL. | 03/05/2026 | 03/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 4 | - Khởi tạo Amazon EC2 Instance.<br>- Cấu hình Security Group.<br>- Tạo Key Pair và kết nối SSH.<br>- Kiểm tra trạng thái EC2 Instance. | 04/05/2026 | 04/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 5 | - Thực hành cấu hình mạng với Amazon VPC.<br>- Thiết lập Public Subnet và Private Subnet.<br>- Ôn tập kiến trúc mạng và bảo mật EC2. | 05/05/2026 | 05/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 6 | - Tổng hợp nội dung EC2, IAM và VPC.<br>- Ôn tập kiến thức về mạng và bảo mật.<br>- Chuẩn bị môi trường cho các Workshop tuần tiếp theo. | 06/05/2026 | 06/05/2026 | https://cloudjourney.awsstudygroup.com/ |
 
 ---
 
