@@ -1,7 +1,7 @@
 ---
 title: "S3 Bucket"
 date: 2026-04-17
-weight: 1
+weight: 2
 chapter: false
 pre: " <b> 5.2. </b> "
 ---
