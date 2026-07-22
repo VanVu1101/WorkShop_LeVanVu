@@ -34,7 +34,7 @@ chapter: false
 
 &emsp; **Mentor Position:** Head of Solution Architect
 
-&emsp; **Internship Duration:** From **17/04/2026** to **10/07/2026**
+&emsp; **Internship Duration:** From **17/04/2026** to **30/07/2026**
 
 ---
 
