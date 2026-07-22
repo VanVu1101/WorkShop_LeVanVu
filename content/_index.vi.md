@@ -43,7 +43,7 @@ Báo cáo này tổng hợp quá trình thực tập, các kiến thức kỹ th
 
 ## Ảnh đại diện
 
-![Lê Văn Vũ](/images/vu.jpg)
+![Lê Văn Vũ](/images/vu1.png)
 
 *Hình 1. Ảnh đại diện sinh viên thực tập.*
 
