@@ -40,7 +40,7 @@ chapter: false
 
 ## Profile
 
-![Le Van Vu](/images/vu1.png)
+![Lê Văn Vũ](/images/vu1.png)
 
 *Figure 1. Student profile photo.*
 
