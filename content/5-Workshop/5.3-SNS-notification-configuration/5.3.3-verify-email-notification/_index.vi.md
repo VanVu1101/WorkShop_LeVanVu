@@ -219,6 +219,9 @@ Sau khi kiểm tra, SNS thường hiển thị:
 - **Tỷ lệ Gửi thành công**: 99%+ cho những đăng ký xác nhận
 - **Gửi thất bại**: Tự động thử lại tới 100 lần trong 24 giờ
 
+
+![Le Van Vũ](/images/sns3.jpg)
+
 #### Kiểm tra SNS Hoàn thành
 
 ✓ Publish manual từ AWS Console hoạt động

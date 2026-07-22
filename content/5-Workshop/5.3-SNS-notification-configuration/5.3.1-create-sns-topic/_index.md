@@ -110,6 +110,8 @@ The topic uses the default SNS resource policy:
 ✓ Ready for email subscriptions
 ✓ Ready for web application integration
 
+![Le Van Vũ](/images/sns1.jpg)
+
 #### Next Steps
 
 1. Add email subscriptions (Section 5.3.2)

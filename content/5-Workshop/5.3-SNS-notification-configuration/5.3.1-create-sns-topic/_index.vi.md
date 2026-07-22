@@ -110,9 +110,12 @@ Topic sử dụng chính sách SNS mặc định:
 ✓ Sẵn sàng cho đăng ký email
 ✓ Sẵn sàng để tích hợp ứng dụng web
 
+![Le Van Vũ](/images/sns1.jpg)
+
 #### Bước Tiếp theo
 
 1. Thêm đăng ký email (Phần 5.3.2)
 2. Cấu hình ứng dụng web để publish tới SNS
 3. Xác minh thông báo được nhận (Phần 5.3.3)
 4. Thiết lập giám sát trong CloudWatch (tùy chọn)
+

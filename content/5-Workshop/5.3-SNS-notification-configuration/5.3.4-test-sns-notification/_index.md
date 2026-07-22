@@ -441,6 +441,9 @@ The SNS notification system for the internship management application is fully f
 
 **Status: READY FOR PRODUCTION** ✅
 
+
+![Le Van Vũ](/images/sns6.jpg)
+
 #### Next Steps
 
 1. Deploy SNS publish code to production application

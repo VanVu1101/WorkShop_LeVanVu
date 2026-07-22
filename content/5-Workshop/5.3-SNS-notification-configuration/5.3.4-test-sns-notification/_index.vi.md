@@ -441,6 +441,8 @@ Hệ thống thông báo SNS cho ứng dụng quản lý thực tập sinh hoàn
 
 **Trạng thái: SẴN SÀNG CHO PRODUCTION** ✅
 
+![Le Van Vũ](/images/sns6.jpg)
+
 #### Bước Tiếp theo
 
 1. Triển khai mã SNS publish cho ứng dụng production

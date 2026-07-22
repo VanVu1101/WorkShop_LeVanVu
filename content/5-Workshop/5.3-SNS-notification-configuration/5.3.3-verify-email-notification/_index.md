@@ -227,6 +227,9 @@ After testing, SNS typically shows:
 ✓ Emails receive with correct content
 ✓ Application can integrate with SNS
 
+
+![Le Van Vũ](/images/sns3.jpg)
+
 #### Integration Verification
 
 The internship web application is ready to:
