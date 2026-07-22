@@ -1,38 +1,118 @@
 ---
-title: "Tạo topic SNS"
-date: 2026-07-21
+title: "Tạo SNS Topic cho Hệ thống Thực tập"
+date: 2026-07-22
 weight: 1
 chapter: false
 pre: " <b> 5.3.1 </b> "
 ---
 
-#### Tạo topic SNS
+#### Tạo SNS Topic cho Hệ thống Quản lý Thực tập sinh
 
-Trang này trình bày báo cáo chi tiết việc tạo và xác nhận SNS topic dùng cho thông báo email của hệ thống.
+Phần này trình bày việc tạo SNS topic đóng vai trò trung tâm để gửi thông báo email từ ứng dụng web quản lý thực tập sinh. SNS topic nhận thông báo từ ứng dụng web và phân phối chúng tới người dùng qua email.
 
-- Topic name: `Nhom4Notification`
-- Topic ARN: `arn:aws:sns:us-east-1:765959262030:Nhom4Notification`
-- Topic owner: `765959262030`
-- Topic type: `Standard`
+#### Cấu hình SNS Topic
 
-#### Mục đích nghiệp vụ
+| Thuộc tính | Giá trị |
+|----------|--------|
+| Tên Topic | `internship-system-notifications` |
+| Topic ARN | `arn:aws:sns:ap-southeast-1:YOUR-ACCOUNT-ID:internship-system-notifications` |
+| Khu vực | `ap-southeast-1` (Singapore) |
+| Loại Topic | `Standard` |
+| Tên Hiển thị | `Thông báo Hệ thống Thực tập sinh` |
+| Giao thức Gửi | `Email` |
 
-Topic SNS được thiết lập để cung cấp cơ chế thông báo theo nhu cầu vận hành. Khi CloudWatch phát hiện sự kiện bất thường, hệ thống sẽ gửi cảnh báo tới email người quản trị, đảm bảo phản hồi nhanh và giảm thiểu rủi ro gián đoạn dịch vụ.
+#### Mục đích và Trường hợp Sử dụng
 
-#### Các bước triển khai
+SNS topic xử lý các trường hợp thông báo sau cho ứng dụng web thực tập sinh:
 
-1. Truy cập AWS SNS Console tại khu vực US East (N. Virginia).
-2. Chọn **Create topic** và thiết lập loại topic là `Standard`.
-3. Nhập tên topic `Nhom4Notification` và hoàn thành tạo topic.
-4. Tạo subscription email với địa chỉ `nguyentri2307@gmail.com`.
-5. Xác nhận subscription từ hộp thư nhận.
+1. **Thông báo Upload File**
+   - Khi sinh viên tải lên ảnh hồ sơ hoặc tài liệu lên S3
+   - Thông báo cho sinh viên và quản trị viên
+   - Ví dụ: "Ảnh hồ sơ của bạn đã được tải lên thành công"
 
-#### Kết quả
+2. **Cảnh báo Nộp Bài Tập**
+   - Khi sinh viên nộp báo cáo thực tập hàng tuần
+   - Thông báo cho giám sát viên để xem xét
+   - Ví dụ: "Báo cáo tuần được nộp bởi Sinh viên A"
 
-Topic SNS đã được cấu hình thành công, thuộc quyền sở hữu tài khoản AWS đúng và sẵn sàng nhận thông báo. Subscription email đã được xác nhận nên chuỗi thông báo có thể hoạt động ngay lập tức.
+3. **Khôi phục Mật khẩu**
+   - Khi người dùng yêu cầu đặt lại mật khẩu
+   - Gửi liên kết an toàn qua email SNS
+   - Bao gồm: Liên kết reset, thời gian hết hạn (24 giờ), hướng dẫn bảo mật
 
-![SNS topic configuration](/images/sns1.jpg)
+4. **Nhắc nhở Hạn chót**
+   - Khi hạn chót bài tập sắp đến (48 giờ trước)
+   - Gửi nhắc nhở cho sinh viên
+   - Ví dụ: "Báo cáo hàng tuần của bạn sắp hết hạn trong 2 ngày"
 
-#### Đảm bảo
+5. **Thông báo cho Quản trị viên**
+   - Lỗi hệ thống hoặc sự kiện quan trọng
+   - Hoạt động tài khoản người dùng
+   - Cảnh báo sử dụng tài nguyên
 
-Ảnh chụp màn hình xác nhận topic đang hoạt động, cấu hình đúng tài khoản và chế độ Standard. Subscription cũng đã được xác nhận, giảm thiểu rủi ro báo động không đến được người nhận.
+#### Bước 1: Tạo Topic SNS
+
+**1. Mở AWS SNS Console**
+- Truy cập AWS Management Console
+- Đi tới Simple Notification Service (SNS)
+- Kiểm tra region được đặt thành **ap-southeast-1**
+
+**2. Tạo Topic Mới**
+- Nhấp **Topics** trong menu bên trái
+- Nhấp **Create topic**
+- Chọn loại **Standard** (không phải FIFO)
+- Nhấp **Next step**
+
+**3. Cấu hình Chi tiết Topic**
+- **Tên**: `internship-system-notifications`
+- **Tên Hiển thị**: `Thông báo Hệ thống Thực tập sinh`
+- **Giữ nguyên các cài đặt khác** (Mã hóa, Chính sách truy cập mặc định)
+- Nhấp **Create topic**
+
+**4. Lưu Topic ARN**
+Sau khi tạo, bạn sẽ thấy Topic ARN. Ví dụ:
+```
+arn:aws:sns:ap-southeast-1:123456789012:internship-system-notifications
+```
+**Lưu ARN này** - cần thiết cho cấu hình ứng dụng web và chính sách IAM ở Phần 5.6.
+
+#### Tích hợp với Ứng dụng Web
+
+Ứng dụng web thực tập sinh (Python/Node.js backend) sẽ sử dụng SNS topic bằng:
+
+1. **Cài đặt SNS SDK**
+   ```
+   pip install boto3  # Cho Python
+   npm install aws-sdk  # Cho Node.js
+   ```
+
+2. **Cấu hình AWS Credentials**
+   - Ứng dụng web sử dụng credentials của IAM user `internship-app`
+   - User này có quyền `sns:Publish` (được cấu hình ở Phần 5.5)
+
+3. **Publish Message tới SNS**
+   - Khi sự kiện xảy ra, ứng dụng gọi SNS Publish API
+   - Ví dụ sự kiện: `StudentUploadedFile`, `TaskSubmitted`, `PasswordResetRequested`
+   - SNS tự động gửi email tới tất cả subscribers
+
+#### Quyền truy cập Topic
+
+Topic sử dụng chính sách SNS mặc định:
+- Cho phép IAM user `internship-app` publish message
+- Cho phép những người đăng ký email nhận thông báo
+- Được quản lý thông qua chính sách IAM (xem Phần 5.5)
+
+#### Kết quả Trạng thái
+
+✓ SNS topic `internship-system-notifications` được tạo
+✓ Topic nằm trong region **ap-southeast-1** (cùng với ứng dụng)
+✓ Loại Standard được chọn để gửi tin cậy
+✓ Sẵn sàng cho đăng ký email
+✓ Sẵn sàng để tích hợp ứng dụng web
+
+#### Bước Tiếp theo
+
+1. Thêm đăng ký email (Phần 5.3.2)
+2. Cấu hình ứng dụng web để publish tới SNS
+3. Xác minh thông báo được nhận (Phần 5.3.3)
+4. Thiết lập giám sát trong CloudWatch (tùy chọn)

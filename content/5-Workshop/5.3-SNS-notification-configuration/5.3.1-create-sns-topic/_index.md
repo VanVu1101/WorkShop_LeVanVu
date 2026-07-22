@@ -1,40 +1,118 @@
 ---
-title: "Create the SNS Topic"
-date: 2026-07-21
+title: "Create SNS Topic for Internship System"
+date: 2026-07-22
 weight: 1
 chapter: false
 pre: " <b> 5.3.1 </b> "
 ---
 
-#### Create the SNS Topic
+#### Creating SNS Topic for Internship Management System
 
-This page documents the SNS topic configuration used for enterprise-grade email notifications and operational alerting.
+This section documents the creation of an SNS topic that serves as the central notification hub for the internship web application. The SNS topic receives notifications from the web application and delivers them via email to users and administrators.
 
-- Topic name: `Nhom4Notification`
-- Topic ARN: `arn:aws:sns:us-east-1:765959262030:Nhom4Notification`
-- Topic owner: `765959262030`
-- Topic type: `Standard`
-- Delivery protocol: `EMAIL`
-- Subscription status: `Confirmed`
+#### SNS Topic Configuration
 
-#### Business justification
+| Property | Value |
+|----------|-------|
+| Topic Name | `internship-system-notifications` |
+| Topic ARN | `arn:aws:sns:ap-southeast-1:YOUR-ACCOUNT-ID:internship-system-notifications` |
+| Region | `ap-southeast-1` (Singapore) |
+| Topic Type | `Standard` |
+| Display Name | `Internship System Notifications` |
+| Delivery Protocol | `Email` |
 
-The SNS topic was created to deliver timely incident alerts and operational notifications to the project owner. This ensures that S3 and CloudWatch events are escalated to email immediately and provides a practical notification channel for business stakeholders.
+#### Purpose and Use Cases
 
-#### Implementation summary
+The SNS topic handles the following notification scenarios for the internship web application:
 
-1. Opened the AWS SNS console in the US East (N. Virginia) region.
-2. Selected **Create topic** and chose the **Standard** topic type.
-3. Entered the name `Nhom4Notification` and confirmed the topic details.
-4. Created an email subscription for `nguyentri2307@gmail.com`.
-5. Confirmed the subscription from the recipient inbox.
+1. **File Upload Notifications**
+   - When a student uploads profile picture or documents to S3
+   - Notifies student and administrator
+   - Example: "Your profile image has been uploaded successfully"
 
-#### Result
+2. **Task Submission Alerts**
+   - When a student submits weekly internship report
+   - Notifies supervisor for review
+   - Example: "New weekly report submitted by Student Name"
 
-The SNS topic is fully configured and ready to receive alarm notifications. It is now available for CloudWatch to use as an action target for alert delivery.
+3. **Password Recovery Emails**
+   - When a user requests password reset
+   - Sends secure reset link via SNS email
+   - Includes: Reset link, expiration time (24 hours), security instructions
 
-![SNS topic configuration](/images/sns1.jpg)
+4. **Deadline Reminders**
+   - When task deadline is approaching (48 hours before)
+   - Sends reminder to students
+   - Example: "Your weekly report is due in 2 days"
 
-#### Assurance
+5. **Admin Notifications**
+   - System errors or critical events
+   - User account activities
+   - Resource usage alerts
 
-The topic details screenshot confirms the topic is active, owned by the correct AWS account, and set to standard messaging. Email subscription has been verified, ensuring no additional approval steps are required before alarm notifications are sent.
+#### Step-by-Step Topic Creation
+
+**1. Open AWS SNS Console**
+- Navigate to AWS Management Console
+- Go to Simple Notification Service (SNS)
+- Ensure region is set to **ap-southeast-1**
+
+**2. Create Topic**
+- Click **Topics** in left menu
+- Click **Create topic**
+- Select **Standard** type (not FIFO)
+- Click **Next step**
+
+**3. Configure Topic Details**
+- **Name**: `internship-system-notifications`
+- **Display name**: `Internship System Notifications`
+- **Leave other settings as default** (Encryption, Access policy can stay default for now)
+- Click **Create topic**
+
+**4. Note Topic ARN**
+After creation, you will see the Topic ARN. Example:
+```
+arn:aws:sns:ap-southeast-1:123456789012:internship-system-notifications
+```
+**Save this ARN** - needed for web application configuration and 5.6 IAM policies.
+
+#### Integration with Web Application
+
+The internship web application (Python/Node.js backend) will use this SNS topic by:
+
+1. **Installing SNS SDK**
+   ```
+   pip install boto3  # For Python
+   npm install aws-sdk  # For Node.js
+   ```
+
+2. **Configuring AWS Credentials**
+   - Web application uses `internship-app` IAM user credentials
+   - This user has `sns:Publish` permission (configured in Section 5.5)
+
+3. **Publishing Messages to SNS**
+   - When event occurs, application calls SNS Publish API
+   - Example event: `StudentUploadedFile`, `TaskSubmitted`, `PasswordResetRequested`
+   - SNS automatically sends email to all subscribers
+
+#### Topic Permissions
+
+The topic uses the default SNS resource policy:
+- Allows `internship-app` user to publish messages
+- Allows email subscribers to receive notifications
+- Managed through IAM policies (see Section 5.5 - IAM Policies)
+
+#### Result Status
+
+✓ SNS topic `internship-system-notifications` created
+✓ Topic is in **ap-southeast-1** region (same as application)
+✓ Standard type selected for reliable message delivery
+✓ Ready for email subscriptions
+✓ Ready for web application integration
+
+#### Next Steps
+
+1. Add email subscriptions (Section 5.3.2)
+2. Configure web application to publish to SNS
+3. Verify notifications are received (Section 5.3.3)
+4. Set up monitoring in CloudWatch (optional)

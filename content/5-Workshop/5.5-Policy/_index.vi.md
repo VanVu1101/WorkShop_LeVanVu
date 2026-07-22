@@ -1,63 +1,144 @@
 ---
-title : "VPC Endpoint Policies"
-date : 2024-01-01
-weight : 5
-chapter : false
-pre : " <b> 5.5 </b> "
+title: "Chính sách IAM và Kiểm soát Truy cập"
+date: 2026-04-17
+weight: 5
+chapter: false
+pre: " <b> 5.5. </b> "
 ---
 
-Khi bạn tạo một Interface Endpoint hoặc Gateway Endpoint, bạn có thể đính kèm một Endpoint Policy để kiểm soát quyền truy cập vào dịch vụ mà bạn đang kết nối. VPC Endpoint Policy là một chính sách tài nguyên IAM được gắn vào Endpoint. Nếu không chỉ định chính sách khi tạo Endpoint, AWS sẽ tự động áp dụng chính sách mặc định cho phép toàn quyền truy cập vào dịch vụ thông qua Endpoint.
+#### Báo cáo Cấu hình IAM Policies và Kiểm soát Truy cập
 
-Bạn có thể tạo một chính sách nhằm giới hạn quyền truy cập chỉ đến các S3 bucket cụ thể. Điều này hữu ích khi bạn muốn kiểm soát và chỉ cho phép một số tài nguyên S3 nhất định được truy cập thông qua VPC Endpoint.
+Phần này trình bày việc tạo chính sách IAM cho hệ thống quản lý thực tập sinh. Chính sách IAM xác định quyền chi tiết cho người dùng và ứng dụng để truy cập tài nguyên AWS một cách an toàn theo nguyên tắc phân quyền tối thiểu.
 
-Trong phần này, bạn sẽ tìm hiểu cách cấu hình VPC Endpoint Policy để giới hạn quyền truy cập đến các tài nguyên Amazon S3 được chỉ định thông qua VPC Endpoint.
+#### Mục tiêu thực hiện
 
-![endpoint diagram](/images/5-Workshop/5.5-Policy/s3-bucket-policy.png)
+Mục tiêu chính là:
 
-#### Cấu hình môi trường EC2 cho việc triển khai ứng dụng web
+- Xác định quyền chi tiết cho truy cập bucket S3
+- Cấu hình quyền kết nối cơ sở dữ liệu RDS
+- Cho phép ghi log CloudWatch để giám sát
+- Thiết lập quyền xuất bản SNS cho thông báo
+- Thực thi nguyên tắc phân quyền tối thiểu
+- Cho phép kiểm toán và tuân thủ
 
-1. Tạo và cấu hình một EC2 Instance để chuẩn bị môi trường triển khai ứng dụng web.
+#### Chính sách 1: S3 Access Policy
 
-2. Kiểm tra các cấu hình cơ bản của EC2 Instance bao gồm:
+**Tên Chính sách:** `internship-app-s3-policy`
 
-- Loại Instance (Instance Type)
-- Cấu hình VPC và Subnet
-- Cấu hình Security Group
-- IAM Role (nếu cần thiết)
+**Hành động Cho phép:**
+- `s3:GetObject` - Đọc file
+- `s3:PutObject` - Tải lên file
+- `s3:DeleteObject` - Xóa file
+- `s3:ListBucket` - Liệt kê nội dung
 
-![ec1](/images/ec2.2.jpg)
+**Tài nguyên:**
+- Bucket: `my-app-uploads-2026-tri`
+- Tiền tố: `student-profile/*`, `weekly-report-templates/*`
 
-*Hình ec1. Cấu hình EC2 Instance và các thiết lập mạng.*
+#### Chính sách 2: RDS Database Access Policy
 
-3. Cấu hình Security Group để cho phép các luồng truy cập cần thiết cho quá trình triển khai ứng dụng trong tương lai:
+**Tên Chính sách:** `internship-app-rds-policy`
 
-- 22: SSH access
-- 80: HTTP access
-- 443: HTTPS access
+**Hành động Cho phép:**
+- `rds-db:connect` - Kết nối cơ sở dữ liệu
 
-![ec2](/images/ec2.jpg)
+**Tài nguyên:**
+- RDS instance: `internship-db`
 
-*Hình ec2. Cấu hình inbound rule của Security Group cho EC2.*
+#### Chính sách 3: CloudWatch Logging Policy
 
-4. Môi trường EC2 đã được chuẩn bị sẵn sàng. Việc triển khai ứng dụng web và cấu hình dịch vụ sẽ được thực hiện ở giai đoạn tiếp theo.
+**Tên Chính sách:** `internship-app-logs-policy`
 
----
+**Hành động Cho phép:**
+- `logs:CreateLogGroup` - Tạo log group
+- `logs:CreateLogStream` - Tạo log stream
+- `logs:PutLogEvents` - Ghi log events
 
-#### Cấu hình AWS Budgets để quản lý chi phí
+**Tài nguyên:**
+- Log group: `/aws/internship-app/*`
 
-Để kiểm soát chi phí AWS và tránh phát sinh chi phí ngoài dự kiến, AWS Budgets đã được cấu hình nhằm theo dõi mức sử dụng tài nguyên và chi phí ước tính của tài khoản AWS.
+#### Chính sách 4: SNS Notification Policy
 
-Các bước cấu hình AWS Budgets bao gồm:
+**Tên Chính sách:** `internship-app-sns-policy`
 
-- Tạo Monthly Cost Budget để theo dõi chi phí hàng tháng.
-- Thiết lập giới hạn ngân sách mong muốn.
-- Cấu hình thông báo qua email khi chi phí thực tế hoặc chi phí dự báo vượt quá mức giới hạn.
-- Theo dõi mức sử dụng AWS Free Tier và các tài nguyên đang hoạt động.
+**Hành động Cho phép:**
+- `sns:Publish` - Gửi thông báo
 
-![budget](/images/budget.jpg)
+**Tài nguyên:**
+- Topic: `internship-system-notifications`
 
-*Hình budget. Cấu hình AWS Budgets để giám sát chi phí sử dụng AWS hàng tháng.*
+#### Tạo Chính sách
 
-Sau khi hoàn tất cấu hình AWS Budgets, hệ thống có thể tự động theo dõi chi phí sử dụng AWS và gửi cảnh báo khi chi phí có nguy cơ vượt quá giới hạn đã thiết lập.
+**Quy trình từng bước:**
 
-Việc kết hợp VPC Endpoint Policy và AWS Budgets giúp tăng cường khả năng quản lý bảo mật cũng như kiểm soát chi phí trong môi trường AWS.
+1. **Tạo Policy trong IAM Console:**
+   - Mở AWS Console → IAM → Policies
+   - Nhấp Create policy
+   - Chọn JSON tab
+   - Dán policy document
+   - Nhấp Next
+   - Nhập tên chính sách
+   - Nhấp Create policy
+
+2. **Gắn Policy vào User:**
+   - Đi đến IAM Users
+   - Chọn user (internship-app)
+   - Nhấp Add permissions
+   - Chọn Attach policies directly
+   - Tìm kiếm và chọn policies
+   - Nhấp Attach policies
+
+#### Chính sách cho Mỗi User
+
+**User internship-app:**
+- Gắn: `internship-app-s3-policy`
+- Gắn: `internship-app-rds-policy`
+- Gắn: `internship-app-sns-policy`
+
+**User internship-admin:**
+- Gắn: AWS managed `AdministratorAccess`
+
+#### Xác minh Chính sách
+
+**Sử dụng IAM Policy Simulator:**
+
+1. Mở IAM Console → Policy Simulator
+2. Chọn User/Role
+3. Chọn Action (ví dụ: s3:GetObject)
+4. Nhập Resource ARN
+5. Nhấp Simulate
+
+**Kết quả Dự kiến:**
+- internship-app `s3:GetObject` trên `s3://my-app-uploads-2026-tri/student-profile/*` → Được phép ✓
+- internship-app `s3:GetObject` trên `s3://other-bucket/*` → Bị từ chối ✓
+- internship-admin S3 actions → Được phép ✓
+
+#### Kết quả và Trạng thái
+
+✓ Chính sách S3 được tạo
+✓ Chính sách RDS được tạo
+✓ Chính sách CloudWatch logging được tạo
+✓ Chính sách SNS xuất bản được tạo
+✓ Chính sách được gắn vào users
+✓ Tất cả chính sách được kiểm tra và xác minh
+✓ Nguyên tắc phân quyền tối thiểu được thực thi
+
+#### Các Biện pháp Bảo mật
+
+1. **Phân quyền Tối thiểu** - Chỉ quyền cần thiết
+2. **Hạn chế Tài nguyên** - Truy cập chỉ tài nguyên cụ thể
+3. **Hạn chế Hành động** - Chỉ hành động cần thiết
+4. **Ghi lại Kiểm toán** - Tất cả hoạt động trong CloudTrail
+5. **Xem xét Định kỳ** - Kiểm tra chính sách hàng quý
+
+#### Các Cải tiến Đề xuất
+
+1. **Truy cập Dựa trên Điều kiện** - Thêm hạn chế IP
+2. **Tags Tài nguyên** - Sử dụng để kiểm soát chi tiết
+3. **Access Analyzer** - Tìm quyền không sử dụng
+4. **Xem xét Chính sách** - Cập nhật hàng quý
+5. **Truy cập Đa tài khoản** - Nếu cần
+
+#### Kết luận
+
+Chính sách IAM cung cấp kiểm soát truy cập an toàn và chi tiết cho hệ thống quản lý thực tập sinh. Bằng cách thực thi nguyên tắc phân quyền tối thiểu, hệ thống duy trì bảo mật trong khi cho phép các hoạt động cần thiết cho người dùng và ứng dụng.
